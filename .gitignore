@@ -21,3 +21,5 @@ vendor/bundle
 
 # Ignore npm
 node_modules
+
+app/assets/javascripts/components/bundle.js

@@ -8,7 +8,13 @@ import ListComponent from './ListComponent.jsx';
 class TaskEditor extends React.Component {
   constructor() {
     super();
-    this.state = {tasks: [], inputTaskName: ''};
+    this.state = {
+      tasks: [],
+      inputTaskName: '',
+      colorCode: '',
+      colorInputMode: 'select',
+      colors: []
+    };
   }
 
   componentDidMount() {
@@ -37,6 +43,10 @@ class TaskEditor extends React.Component {
     this.setState({inputTaskName: input.task_name})
   }
 
+  handleSelectNew() {
+    this.setState({colorInputMode: 'input'})
+  }
+
   handleClickDelete(id) {
     request
       .del(`/todos/${id}.json`)
@@ -59,8 +69,12 @@ class TaskEditor extends React.Component {
         <section>
           <InputComponent
             inputTaskName={this.state.inputTaskName}
+            colorCode={this.state.colorCode}
+            colorInputMode={this.state.colorInputMode}
+            colors={this.state.colors}
             onClickAdd={this.handleClickAdd.bind(this)}
-            onChangeTaskName={this.handleChangeTaskName.bind(this)} />
+            onChangeTaskName={this.handleChangeTaskName.bind(this)}
+            onSelectNew={this.handleSelectNew.bind(this)} />
         </section>
         <section>
           <ListComponent
