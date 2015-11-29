@@ -1,10 +1,10 @@
 class ListItem extends React.Component {
   handleClickDelete() {
-    this.props.onClickDelete(this.props.task._id);
+    this.props.onClickDelete(this.props.task.id);
   }
   render() {
     return (
-      <li>{this.props.task.task_name}
+      <li>{this.props.task.title}
         <button onClick={this.handleClickDelete.bind(this)}>削除</button>
       </li>
     );
@@ -21,7 +21,7 @@ export default class ListComponent extends React.Component {
         {this.props.tasks.map(task => {
           return (
             <ListItem
-              key={task._id}
+              key={task.id}
               task={task}
               onClickDelete={this.handleClickDelete.bind(this)}/>
           );

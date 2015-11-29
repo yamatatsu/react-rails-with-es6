@@ -13,21 +13,21 @@ class TaskEditor extends React.Component {
 
   componentDidMount() {
     request
-      .get('/api/tasks/')
+      .get('/todos.json')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
-        this.setState({tasks: res.body.tasks});
+        this.setState({tasks: res.body});
       });
   }
 
   handleClickAdd() {
     request
-      .post('/api/tasks/')
-      .send({task_name: this.state.inputTaskName.trim()})
+      .post('/todos.json')
+      .send({title: this.state.inputTaskName.trim()})
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         this.setState({
-          tasks: this.state.tasks.concat(res.body.task),
+          tasks: this.state.tasks.concat(res.body),
           inputTaskName: ''
         });
       });
@@ -39,11 +39,15 @@ class TaskEditor extends React.Component {
 
   handleClickDelete(id) {
     request
-      .del('/api/tasks/' + id)
+      .del(`/todos/${id}.json`)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
+        if (!res.ok) {
+          console.error(err);
+          return;
+        }
         this.setState({
-          tasks: reject(this.state.tasks, task => task._id === res.body._id)
+          tasks: reject(this.state.tasks, task => task.id === id)
         });
       });
   }

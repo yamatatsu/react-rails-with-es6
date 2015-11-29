@@ -5,7 +5,7 @@ export default class InputComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.refs.taskName.getDOMNode().focus();
+    this.refs.taskName.focus();
   }
 
   handleChangeTaskName(e) {
@@ -14,7 +14,7 @@ export default class InputComponent extends React.Component {
 
   handleClickAdd() {
     this.props.onClickAdd();
-    this.refs.taskName.getDOMNode().focus();
+    this.refs.taskName.focus();
   }
 
   render() {

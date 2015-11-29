@@ -27,7 +27,6 @@
     "glob": "^6.0.1",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
-    "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {

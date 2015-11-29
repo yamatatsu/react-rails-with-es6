@@ -8,7 +8,7 @@ glob = require 'glob'
 basejsPath = './frontend/javascript/components/TaskEditor.jsx'
 
 gulp.task 'build', ->
-  files = glob.sync basejsPath
+  files = glob.sync './frontend/javascript/components/TaskEditor.jsx'
   browserify
     entries: files,
     debug: true
@@ -18,6 +18,6 @@ gulp.task 'build', ->
   .pipe gulp.dest 'app/assets/javascripts/components'
 
 gulp.task 'watch', ->
-  gulp.watch(basejsPath, ['build'])
+  gulp.watch('./frontend/javascript/components/**/*.jsx', ['build'])
 
 gulp.task 'default', ['build']
