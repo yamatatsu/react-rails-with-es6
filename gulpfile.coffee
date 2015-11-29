@@ -5,8 +5,10 @@ babelify = require 'babelify'
 source = require 'vinyl-source-stream'
 glob = require 'glob'
 
+basejsPath = './frontend/javascript/components/TaskEditor.jsx'
+
 gulp.task 'build', ->
-  files = glob.sync './frontend/javascript/components/HelloWorld.jsx' #'./frontend/javascripts/**/*.{js,jsx,coffee}'
+  files = glob.sync basejsPath
   browserify
     entries: files,
     debug: true
@@ -16,6 +18,6 @@ gulp.task 'build', ->
   .pipe gulp.dest 'app/assets/javascripts/components'
 
 gulp.task 'watch', ->
-  gulp.watch('./frontend/javascripts/**/*.{js,jsx,coffee}', ['build'])
+  gulp.watch(basejsPath, ['build'])
 
 gulp.task 'default', ['build']
